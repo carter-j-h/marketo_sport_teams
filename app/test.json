@@ -1,0 +1,9 @@
+var data = {
+	"full_name" : "Carter Hickingbotham",
+	"title" : "Author",
+	"active" : true
+	"courses": [
+		"Econ 101",
+		"Chem 101"
+	]
+};

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+	<p>Testing page</p>
+	<div id="chart_div"></div>
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+{% endblock %}

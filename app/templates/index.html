@@ -1,0 +1,1464 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+			mdl-layout--fixed-tabs">
+		<header class="mdl-layout__header">
+			<div class="mdl-layout__header-row">
+			  <!-- Title -->
+			  <span class="mdl-layout-title">
+			  	{% if current_user.is_authenticated %}
+			  		{{ current_user.username }}
+			  	{% else %}
+			  		Marketo Employee
+			  	{% endif %}
+
+			  </span>
+			  <div class="mdl-layout-spacer"></div>
+
+			  <nav class="mdl-navigation">
+			  	{% if current_user.is_authenticated %}
+        		<a class="mdl-navigation__link" href="{{ url_for('login') }}">Logout</a>
+        		{% else %}
+        		<a class="mdl-navigation__link" href="{{ url_for('login') }}">Login</a>
+        		{% endif %}
+      		  </nav>
+			  
+			</div>
+			
+		</header>
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">{{ current_user.username }}- Profile</span>
+				
+			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link" href="#">Pick Your Teams</a>
+				<a class="mdl-navigation__link" href="#">Summary Rankings</a>
+				<a class="mdl-navigation__link" href="/login">Logout</a>
+			  </nav>
+		</div>
+
+		<main class="mdl-layout__content">
+			<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+				<div class="mdl-tabs__tab-bar">
+				  <a href="#nfl-panel" class="mdl-tabs__tab is-active">NFL Teams</a>
+				  <a href="#nba-panel" class="mdl-tabs__tab">NBA Teams</a>
+				  <a href="#mlb-panel" class="mdl-tabs__tab">MLB Teams</a>
+				  <a href="#nhl-panel" class="mdl-tabs__tab">NHL Teams</a>
+				</div>
+
+				<h6 class="site-instructions">Choose <strong>one</strong> team per sport by clicking the tab next to their logo.  Click the next tab to pick a team in a diffent sports league.  See your 4 favorite teams summarized below!</h6>
+
+				<div class="mdl-tabs__panel is-active" id="nfl-panel">
+					<ul class="mdl-list wrap-list">
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="az-cardinals" src = "{{ url_for('static', filename='images/nfl_az_cardinals.png') }}" />	    	
+					      Arizona Cardinals
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
+					          <input type="checkbox" id="list-switch-1" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="atl-falcons" src = "{{ url_for('static', filename='images/nfl_atl_falcons.png') }}" />	    	
+					      Atlanta Falcons
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-2">
+					          <input type="checkbox" id="list-switch-2" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="balt-ravens" src = "{{ url_for('static', filename='images/nfl_balt_ravens.png') }}" />	    	
+					      Baltimore Ravens
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-3">
+					          <input type="checkbox" id="list-switch-3" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="buf-bills" src = "{{ url_for('static', filename='images/nfl_buf_bills.png') }}" />	    	
+					      Buffalo Bills
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-4">
+					          <input type="checkbox" id="list-switch-4" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="car-panthers" src = "{{ url_for('static', filename='images/nfl_car_panthers.png') }}" />	    	
+					      Carolina Panthers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-5">
+					          <input type="checkbox" id="list-switch-5" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="chi-bears" src = "{{ url_for('static', filename='images/nfl_chi_bears.png') }}" />	    	
+					      Chicago Bears
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-6">
+					          <input type="checkbox" id="list-switch-6" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="cin-bengals" src = "{{ url_for('static', filename='images/nfl_cin_bengals.png') }}" />	    	
+					      Cincinatti Bengals
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-7">
+					          <input type="checkbox" id="list-switch-7" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="cle-browns" src = "{{ url_for('static', filename='images/nfl_cle_browns.jpeg') }}" />	    	
+					      Cleveland Browns
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-8">
+					          <input type="checkbox" id="list-switch-8" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="dal-cowboys" src = "{{ url_for('static', filename='images/nfl_dal_cowboys.png') }}" />	    	
+					      Dallas Cowboys
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-9">
+					          <input type="checkbox" id="list-switch-9" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="den-broncos" src = "{{ url_for('static', filename='images/nfl_den_broncos.png') }}" />	    	
+					      Denver Broncos
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-10">
+					          <input type="checkbox" id="list-switch-10" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="det-lions" src = "{{ url_for('static', filename='images/nfl_det_lions.png') }}" />	    	
+					      Detroit Lions
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-11">
+					          <input type="checkbox" id="list-switch-11" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="gb-packers" src = "{{ url_for('static', filename='images/nfl_gb_packers.png') }}" />	    	
+					      Green Bay Packers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-12">
+					          <input type="checkbox" id="list-switch-12" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="hou-texans" src = "{{ url_for('static', filename='images/nfl_hou_texans.png') }}" />	    	
+					      Houston Texans
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-13">
+					          <input type="checkbox" id="list-switch-13" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ind-colts" src = "{{ url_for('static', filename='images/nfl_ind_colts.png') }}" />	    	
+					      Indianapolis Colts
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-14">
+					          <input type="checkbox" id="list-switch-14" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="jax-jaguars" src = "{{ url_for('static', filename='images/nfl_jax_jaguars.jpeg') }}" />    	
+					      Jacksonville Jaguars
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-15">
+					          <input type="checkbox" id="list-switch-15" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="kc-chiefs" src = "{{ url_for('static', filename='images/nfl_kc_chiefs.png') }}" />    	
+					      Kansas City Chiefs
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-16">
+					          <input type="checkbox" id="list-switch-16" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="la-rams" src = "{{ url_for('static', filename='images/nfl_la_rams.png') }}" />    	
+					      Los Angeles Rams
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-17">
+					          <input type="checkbox" id="list-switch-17" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="mia-dolphins" src = "{{ url_for('static', filename='images/nfl_mia_dolphins.png') }}" />    	
+					      Miami Dolphins
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-18">
+					          <input type="checkbox" id="list-switch-18" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="mn-vikings" src = "{{ url_for('static', filename='images/nfl_mn_vikings.png') }}" />    	
+					      Minnesota Vikings
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-19">
+					          <input type="checkbox" id="list-switch-19" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ne-patriots" src = "{{ url_for('static', filename='images/nfl_ne_patriots.png') }}" />    	
+					      New England Patriots
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-20">
+					          <input type="checkbox" id="list-switch-20" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="no-saints" src = "{{ url_for('static', filename='images/nfl_no_saints.png') }}" />    	
+					      New Orleans Saints
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-21">
+					          <input type="checkbox" id="list-switch-21" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ny-giants" src = "{{ url_for('static', filename='images/nfl_ny_giants.png') }}" />    	
+					      New York Giants
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-22">
+					          <input type="checkbox" id="list-switch-22" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ny-jets" src = "{{ url_for('static', filename='images/nfl_ny_jets.png') }}" />    	
+					      New York Jets
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-23">
+					          <input type="checkbox" id="list-switch-23" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="oak-raiders" src = "{{ url_for('static', filename='images/nfl_oak_raiders.png') }}" />    	
+					      Oakland Raiders
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-24">
+					          <input type="checkbox" id="list-switch-24" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="phi-eagles" src = "{{ url_for('static', filename='images/nfl_phi_eagles.jpeg') }}" />    	
+					      Philadelphia Eagles
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-25">
+					          <input type="checkbox" id="list-switch-25" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="pit-steelers" src = "{{ url_for('static', filename='images/nfl_pit_steelers.png') }}" />    	
+					      Pittsburgh Steelers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-26">
+					          <input type="checkbox" id="list-switch-26" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="sd-chargers" src = "{{ url_for('static', filename='images/nfl_sd_chargers.png') }}" />    	
+					      San Diego Chargers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-27">
+					          <input type="checkbox" id="list-switch-27" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="sea-seahawks" src = "{{ url_for('static', filename='images/nfl_sea_seahawks.png') }}" />    	
+					      Seattle Seahawks
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-28">
+					          <input type="checkbox" id="list-switch-28" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="sf-49ers" src = "{{ url_for('static', filename='images/nfl_sf_49ers.png') }}" />    	
+					      San Francisco 49ers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-29">
+					          <input type="checkbox" id="list-switch-29" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="tb-bucs" src = "{{ url_for('static', filename='images/nfl_tb_bucs.png') }}" />    	
+					      Tampa Bay Buccaneers 
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-30">
+					          <input type="checkbox" id="list-switch-30" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="tn-titans" src = "{{ url_for('static', filename='images/nfl_tn_titans.png') }}" />    	
+					      Tennessee Titans
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-31">
+					          <input type="checkbox" id="list-switch-31" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="wsh-redskins" src = "{{ url_for('static', filename='images/nfl_wsh_redskins.png') }}" />    	
+					      Washington Redskins
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-32">
+					          <input type="checkbox" id="list-switch-32" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					</ul>
+				</div>
+				<div class="mdl-tabs__panel" id="nba-panel">
+					<ul class="mdl-list wrap-list">
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="atl-hawks" src = "{{ url_for('static', filename='images/nba_atl_hawks.png') }}" />	    	
+					      Atlanta Hawks
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-33">
+					          <input type="checkbox" id="list-switch-33" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="bos-celtics" src = "{{ url_for('static', filename='images/nba_bos_celtics.jpeg') }}" />	    	
+					      Boston Celtics
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-34">
+					          <input type="checkbox" id="list-switch-34" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="bk-nets" src = "{{ url_for('static', filename='images/nba_bk_nets.png') }}" />	    	
+					      Brooklyn Nets
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-35">
+					          <input type="checkbox" id="list-switch-35" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="char-hornets" src = "{{ url_for('static', filename='images/nba_char_hornets.jpeg') }}" />	    	
+					      Charlotte Hornets
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-36">
+					          <input type="checkbox" id="list-switch-36" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="chi-bulls" src = "{{ url_for('static', filename='images/nba_chi_bulls.png') }}" />	    	
+					      Chicago Bulls
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-37">
+					          <input type="checkbox" id="list-switch-37" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="cle-cavaliers" src = "{{ url_for('static', filename='images/nba_cle_cavaliers.png') }}" />	    	
+					      Cleveland Cavaliers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-38">
+					          <input type="checkbox" id="list-switch-38" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="dal-mavericks" src = "{{ url_for('static', filename='images/nba_dal_mavericks.jpeg') }}" />	    	
+					      Dallas Mavericks
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-39">
+					          <input type="checkbox" id="list-switch-39" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="den-nuggets" src = "{{ url_for('static', filename='images/nba_den_nuggets.png') }}" />	    	
+					      Denver Nuggets
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-40">
+					          <input type="checkbox" id="list-switch-40" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="det-pistons" src = "{{ url_for('static', filename='images/nba_det_pistons.png') }}" />	    	
+					      Detroit Pistons
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-41">
+					          <input type="checkbox" id="list-switch-41" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="gs-warriors" src = "{{ url_for('static', filename='images/nba_gs_warriors.png') }}" />	    	
+					      Golden State Warriors
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-42">
+					          <input type="checkbox" id="list-switch-42" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="hou-rockets" src = "{{ url_for('static', filename='images/nba_hou_rockets.png') }}" />	    	
+					      Houston Rockets
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-43">
+					          <input type="checkbox" id="list-switch-43" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ind-pacers" src = "{{ url_for('static', filename='images/nba_ind_pacers.png') }}" />	    	
+					      Indiana Pacers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-44">
+					          <input type="checkbox" id="list-switch-44" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="la-clippers" src = "{{ url_for('static', filename='images/nba_la_clippers.png') }}" />	    	
+					      Los Angeles Clippers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-45">
+					          <input type="checkbox" id="list-switch-45" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="la-lakers" src = "{{ url_for('static', filename='images/nba_la_lakers.png') }}" />	    	
+					      Los Angeles Lakers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-46">
+					          <input type="checkbox" id="list-switch-46" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="mem-grizzlies" src = "{{ url_for('static', filename='images/nba_mem_grizzlies.jpeg') }}" />    	
+					      Memphis Grizzlies
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-47">
+					          <input type="checkbox" id="list-switch-47" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="mia-heat" src = "{{ url_for('static', filename='images/nba_mia_heat.png') }}" />    	
+					      Miami Heat
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-48">
+					          <input type="checkbox" id="list-switch-48" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="mlk-bucks" src = "{{ url_for('static', filename='images/nba_mlk_bucks.jpeg') }}" />    	
+					      Milwaukee Bucks
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-49">
+					          <input type="checkbox" id="list-switch-49" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="mn-timberwolves" src = "{{ url_for('static', filename='images/nba_mn_timberwolves.jpeg') }}" />    	
+					      Minnesota Timberwolves
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-50">
+					          <input type="checkbox" id="list-switch-50" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="no-pelicans" src = "{{ url_for('static', filename='images/nba_no_pelicans.png') }}" />    	
+					      New Orleans Pelicans
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-51">
+					          <input type="checkbox" id="list-switch-51" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ny-knicks" src = "{{ url_for('static', filename='images/nba_ny_knicks.png') }}" />    	
+					      New York Knicks
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-52">
+					          <input type="checkbox" id="list-switch-52" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="okc-thunder" src = "{{ url_for('static', filename='images/nba_okc_thunder.png') }}" />    	
+					      Oklahoma City Thunder
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-53">
+					          <input type="checkbox" id="list-switch-53" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="orl-magic" src = "{{ url_for('static', filename='images/nba_orl_magic.png') }}" />    	
+					      Orlando Magic
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-54">
+					          <input type="checkbox" id="list-switch-54" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="phi-76ers" src = "{{ url_for('static', filename='images/nba_phi_76ers.png') }}" />    	
+					      Philadelphia 76ers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-55">
+					          <input type="checkbox" id="list-switch-55" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="phx-suns" src = "{{ url_for('static', filename='images/nba_phx_suns.png') }}" />    	
+					      Phoenix Suns
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-56">
+					          <input type="checkbox" id="list-switch-56" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ptl-blazers" src = "{{ url_for('static', filename='images/nba_ptl_blazers.jpeg') }}" />    	
+					      Portland Trailblazers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-57">
+					          <input type="checkbox" id="list-switch-57" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="sac-kings" src = "{{ url_for('static', filename='images/nba_sac_kings.png') }}" />    	
+					      Sacramento Kings
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-58">
+					          <input type="checkbox" id="list-switch-58" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="sa-spurs" src = "{{ url_for('static', filename='images/nba_sa_spurs.jpeg') }}" />    	
+					      San Antonio Spurs
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-59">
+					          <input type="checkbox" id="list-switch-59" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="tor-raptors" src = "{{ url_for('static', filename='images/nba_tor_raptors.jpeg') }}" />    	
+					      Toronto Raptors
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-60">
+					          <input type="checkbox" id="list-switch-60" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ut-jazz" src = "{{ url_for('static', filename='images/nba_ut_jazz.png') }}" />    	
+					      Utah Jazz
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-61">
+					          <input type="checkbox" id="list-switch-61" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="wsh-wizards" src = "{{ url_for('static', filename='images/nba_wsh_wizards.png') }}" />    	
+					      Washington Wizards
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-62">
+					          <input type="checkbox" id="list-switch-62" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					</ul>
+				</div>
+				<div class="mdl-tabs__panel" id="mlb-panel">
+					<ul class="mdl-list wrap-list">
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="az-diamondbacks" src = "{{ url_for('static', filename='images/mlb_az_diamondbacks.png') }}" />    	
+					      Arizona Diamondbacks
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-63">
+					          <input type="checkbox" id="list-switch-63" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="atl-braves" src = "{{ url_for('static', filename='images/mlb_atl_braves.png') }}" />	    	
+					      Atlanta Braves
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-64">
+					          <input type="checkbox" id="list-switch-64" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="bal-orioles" src = "{{ url_for('static', filename='images/mlb_bal_orioles.png') }}" />	    	
+					      Baltimore Orioles
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-65">
+					          <input type="checkbox" id="list-switch-65" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="bos-sox" src = "{{ url_for('static', filename='images/mlb_bos_sox.png') }}" />	    	
+					      Boston Red Sox
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-66">
+					          <input type="checkbox" id="list-switch-66" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="chi-cubs" src = "{{ url_for('static', filename='images/mlb_chi_cubs.png') }}" />	    	
+					      Chicago Cubs
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-67">
+					          <input type="checkbox" id="list-switch-67" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="chi-sox" src = "{{ url_for('static', filename='images/mlb_chi_sox.jpeg') }}" />	    	
+					      Chicago White Sox
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-68">
+					          <input type="checkbox" id="list-switch-68" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="cin-reds" src = "{{ url_for('static', filename='images/mlb_cin_reds.png') }}" />	    	
+					      Cincinatti Reds
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-69">
+					          <input type="checkbox" id="list-switch-69" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="cle-indians" src = "{{ url_for('static', filename='images/mlb_cle_indians.png') }}" />	    	
+					      Cleveland Indians
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-70">
+					          <input type="checkbox" id="list-switch-70" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="col-rockies" src = "{{ url_for('static', filename='images/mlb_col_rockies.jpeg') }}" />	    	
+					      Colorado Rockies
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-71">
+					          <input type="checkbox" id="list-switch-71" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="det-tigers" src = "{{ url_for('static', filename='images/mlb_det_tigers.png') }}" />	    	
+					      Detroit Tigers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-72">
+					          <input type="checkbox" id="list-switch-72" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="mia-marlins" src = "{{ url_for('static', filename='images/mlb_mia_marlins.png') }}" />	    	
+					      Florida Marlins
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-73">
+					          <input type="checkbox" id="list-switch-73" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="hou-astros" src = "{{ url_for('static', filename='images/mlb_hou_astros.png') }}" />	    	
+					      Houston Astros
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-74">
+					          <input type="checkbox" id="list-switch-74" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="kc-royals" src = "{{ url_for('static', filename='images/mlb_kc_royals.png') }}" />	    	
+					      Kansas City Royals
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-75">
+					          <input type="checkbox" id="list-switch-75" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="la-angels" src = "{{ url_for('static', filename='images/mlb_la_angels.jpeg') }}" />	    	
+					      Los Angeles Angels
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-76">
+					          <input type="checkbox" id="list-switch-76" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="la-dodgers" src = "{{ url_for('static', filename='images/mlb_la_dodgers.png') }}" />	    	
+					      Los Angeles Dodgers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-77">
+					          <input type="checkbox" id="list-switch-77" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="mil-brewers" src = "{{ url_for('static', filename='images/mlb_mil_brewers.jpeg') }}" />    	
+					      Milwaukee Brewers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-78">
+					          <input type="checkbox" id="list-switch-78" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="min-twins" src = "{{ url_for('static', filename='images/mlb_mn_twins.png') }}" />    	
+					      Minnesota Twins
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-79">
+					          <input type="checkbox" id="list-switch-79" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ny-mets" src = "{{ url_for('static', filename='images/mlb_ny_mets.png') }}" />    	
+					      New York Mets
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-80">
+					          <input type="checkbox" id="list-switch-80" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ny-yankees" src = "{{ url_for('static', filename='images/mlb_ny_yankees.png') }}" />    	
+					      New York Yankees
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-81">
+					          <input type="checkbox" id="list-switch-81" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="oak-a" src = "{{ url_for('static', filename='images/mlb_oak_a.png') }}" />    	
+					      Oakland Athletics
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-82">
+					          <input type="checkbox" id="list-switch-82" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="phi-phillies" src = "{{ url_for('static', filename='images/mlb_phi_phillies.png') }}" />    	
+					      Philadelphia Phillies
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-83">
+					          <input type="checkbox" id="list-switch-83" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="pit-pirates" src = "{{ url_for('static', filename='images/mlb_pit_pirates.png') }}" />    	
+					      Pittsburgh Pirates
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-84">
+					          <input type="checkbox" id="list-switch-84" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="sd-padres" src = "{{ url_for('static', filename='images/mlb_sd_padres.png') }}" />    	
+					      San Diego Padres
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-85">
+					          <input type="checkbox" id="list-switch-85" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="sf-giants" src = "{{ url_for('static', filename='images/mlb_sf_giants.jpeg') }}" />    	
+					      San Francisco Giants
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-86">
+					          <input type="checkbox" id="list-switch-86" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="sea-mariners" src = "{{ url_for('static', filename='images/mlb_sea_mariners.jpeg') }}" />    	
+					      Seattle Mariners
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-87">
+					          <input type="checkbox" id="list-switch-87" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="stl-cardinals" src = "{{ url_for('static', filename='images/mlb_stl_cardinals.png') }}" />    	
+					      St. Louis Cardinals
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-88">
+					          <input type="checkbox" id="list-switch-88" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="tb-rays" src = "{{ url_for('static', filename='images/mlb_tb_rays.jpeg') }}" />    	
+					      Tampa Bay Rays
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-89">
+					          <input type="checkbox" id="list-switch-89" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="tx-rangers" src = "{{ url_for('static', filename='images/mlb_tx_rangers.png') }}" />    	
+					      Texas Rangers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-90">
+					          <input type="checkbox" id="list-switch-90" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="tor-jay" src = "{{ url_for('static', filename='images/mlb_tor_jays.png') }}" />    	
+					      Toronto Blue Jays
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-91">
+					          <input type="checkbox" id="list-switch-91" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="wsh-nationals" src = "{{ url_for('static', filename='images/mlb_wsh_nationals.png') }}" />    	
+					      Washington Nationals
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-92">
+					          <input type="checkbox" id="list-switch-92" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					</ul>
+				</div>
+				<div class="mdl-tabs__panel" id="nhl-panel">
+					<ul class="mdl-list wrap-list">
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="an-ducks" src = "{{ url_for('static', filename='images/nhl_an_ducks.jpeg') }}" />    	
+					      Anaheim Ducks
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-93">
+					          <input type="checkbox" id="list-switch-93" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="atl-braves" src = "{{ url_for('static', filename='images/nhl_bos_bruins.png') }}" />	    	
+					      Boston Bruines
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-94">
+					          <input type="checkbox" id="list-switch-94" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="buf-sabres" src = "{{ url_for('static', filename='images/nhl_buf_sabres.png') }}" />	    	
+					      Buffalo Sabres
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-95">
+					          <input type="checkbox" id="list-switch-95" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="cal-flames" src = "{{ url_for('static', filename='images/nhl_cal_flames.png') }}" />	    	
+					      Calgary Flames
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-96">
+					          <input type="checkbox" id="list-switch-96" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="car-hurricanes" src = "{{ url_for('static', filename='images/nhl_car_hurricanes.png') }}" />	    	
+					      Carolina Hurricanes
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-97">
+					          <input type="checkbox" id="list-switch-97" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="chi-hawks" src = "{{ url_for('static', filename='images/nhl_chi_hawks.png') }}" />	    	
+					      Chicago Blackhawks
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-98">
+					          <input type="checkbox" id="list-switch-98" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="col-avalanche" src = "{{ url_for('static', filename='images/nhl_col_avalanche.png') }}" />	    	
+					      Colorado Avalanche
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-99">
+					          <input type="checkbox" id="list-switch-99" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="col-jackets" src = "{{ url_for('static', filename='images/nhl_col_jackets.png') }}" />	    	
+					      Columbus Blue Jackets
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-100">
+					          <input type="checkbox" id="list-switch-100" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="dal-stars" src = "{{ url_for('static', filename='images/nhl_dal_stars.jpeg') }}" />	    	
+					      Dallas Stars
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-101">
+					          <input type="checkbox" id="list-switch-101" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="det-wings" src = "{{ url_for('static', filename='images/nhl_det_wings.jpeg') }}" />	    	
+					      Detroit Red Wings
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-102">
+					          <input type="checkbox" id="list-switch-102" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ed-oilers" src = "{{ url_for('static', filename='images/nhl_ed_oilers.png') }}" />	    	
+					      Edmonton Oilers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-103">
+					          <input type="checkbox" id="list-switch-103" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="fl-panthers" src = "{{ url_for('static', filename='images/nhl_fl_panthers.png') }}" />	    	
+					      Florida Panthers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-104">
+					          <input type="checkbox" id="list-switch-104" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="la-kings" src = "{{ url_for('static', filename='images/nhl_la_kings.png') }}" />	    	
+					      Los Angeles Kings
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-105">
+					          <input type="checkbox" id="list-switch-105" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="mn-wild" src = "{{ url_for('static', filename='images/nhl_mn_wild.png') }}" />	    	
+					      Minnesota Wild
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-106">
+					          <input type="checkbox" id="list-switch-106" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="mon-canadiens" src = "{{ url_for('static', filename='images/nhl_mon_canadiens.png') }}" />	    	
+					      Montreal Canadiens
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-107">
+					          <input type="checkbox" id="list-switch-107" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="nsh-preds" src = "{{ url_for('static', filename='images/nhl_nsh_preds.png') }}" />    	
+					      Nashville Predators
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-108">
+					          <input type="checkbox" id="list-switch-108" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="nj-devils" src = "{{ url_for('static', filename='images/nhl_nj_devils.png') }}" />    	
+					      New Jersey Devils
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-109">
+					          <input type="checkbox" id="list-switch-109" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ny-islanders" src = "{{ url_for('static', filename='images/nhl_ny_islanders.png') }}" />    	
+					      New York Islanders
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-110">
+					          <input type="checkbox" id="list-switch-110" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ny-rangers" src = "{{ url_for('static', filename='images/nhl_ny_rangers.png') }}" />    	
+					      New York Rangers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-111">
+					          <input type="checkbox" id="list-switch-111" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="ot-senators" src = "{{ url_for('static', filename='images/nhl_ot_senators.png') }}" />    	
+					      Ottawa Senators
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-112">
+					          <input type="checkbox" id="list-switch-112" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="phi-flyers" src = "{{ url_for('static', filename='images/nhl_phi_flyers.png') }}" />    	
+					      Philadelphia Flyers
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-113">
+					          <input type="checkbox" id="list-switch-113" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="pho-coyotes" src = "{{ url_for('static', filename='images/nhl_pho_coyotes.jpeg') }}" />    	
+					      Pheonix Coyotes
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-114">
+					          <input type="checkbox" id="list-switch-114" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="pit-penguins" src = "{{ url_for('static', filename='images/nhl_pit_penguins.jpeg') }}" />    	
+					      Pittsburgh Penguins
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-115">
+					          <input type="checkbox" id="list-switch-115" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="stl-blues" src = "{{ url_for('static', filename='images/nhl_stl_blues.png') }}" />    	
+					      St. Louis Blues
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-116">
+					          <input type="checkbox" id="list-switch-116" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="sj-sharks" src = "{{ url_for('static', filename='images/nhl_sj_sharks.png') }}" />    	
+					      San Jose Sharks
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-117">
+					          <input type="checkbox" id="list-switch-117" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="tb-lightning" src = "{{ url_for('static', filename='images/nhl_tb_lightning.png') }}" />    	
+					      Tampa Bay Lightning
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-118">
+					          <input type="checkbox" id="list-switch-118" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="tor-leafs" src = "{{ url_for('static', filename='images/nhl_tor_leafs.png') }}" />    	
+					      Toronto Maple Leafs
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-119">
+					          <input type="checkbox" id="list-switch-119" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="vc-canucks" src = "{{ url_for('static', filename='images/nhl_vc_canucks.png') }}" />    	
+					      Vancouver Canucks
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-120">
+					          <input type="checkbox" id="list-switch-120" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="wsh-capitals" src = "{{ url_for('static', filename='images/nhl_wsh_capitals.png') }}" />    	
+					      Washington Capitals
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-121">
+					          <input type="checkbox" id="list-switch-121" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					  <li class="mdl-list__item">
+					    <span class="mdl-list__item-primary-content">	
+					    	<img class ="team-logo" id ="win-jets" src = "{{ url_for('static', filename='images/nhl_win_jets.jpeg') }}" />    	
+					      Winnipeg Jets
+					    </span>
+					    <span class="mdl-list__item-secondary-action">
+					        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-122">
+					          <input type="checkbox" id="list-switch-122" class="mdl-switch__input"/>
+					        </label>
+					    </span>
+					  </li>
+					</ul>
+				</div>
+			</div>
+
+			
+			<p id="team-list">Here is a list of your Final 4 teams:</p>
+
+			<!-- Section where each users 4 teams are displayed.  After list finalized this will be pushed into the database -->
+			<ul class="mdl-list wrap-list final-4">
+
+			</ul>
+
+			<div class="button-container">
+				<button id="remove-team" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+				  Remove Last
+				</button>
+				<!-- Button to confirm team list -->
+				<button id="save-teams" class="mdl-button mdl-js-button mdl-button--raised" type="button">Save Teams</button>
+				<div id="snackbar-container" class="mdl-js-snackbar mdl-snackbar">
+				  <div class="mdl-snackbar__text"></div>
+				  <button class="mdl-snackbar__action" type="button"></button>
+				</div>
+			</div>
+
+			<footer class="mdl-mini-footer">
+				<div class="mdl-mini-footer__left-section">
+					<div class="mdl-logo">
+					Marketo Sports Team Rankings
+					</div>
+					<ul class="mdl-mini-footer__link-list">
+						<li><a href="/{{name}}">Pick your teams</a></li>
+						<li><a href="/summary">Summary Rankings</a></li>
+						<li><a href="/logout">Logout</a></li>
+					</ul>
+				</div>
+				<div class="mdl-mini-footer__right-section">
+					<ul class="mdl-mini-footer__link-list">
+						<li>Website Created By Carter Hickingbotham</li>
+					</ul>
+					<button class="mdl-mini-footer__social-btn">
+						<div><a href="https://www.linkedin.com/in/carterhickingbotham" target="_blank"><img class="linkedin-logo" src="{{ url_for('static', filename='images/linkedin_logo.png')}}" /></a></div>
+					</button>
+					<button class="mdl-mini-footer__social-btn">
+						<div><a href="https://github.com/cjhickens"><img class="github-logo" src="{{ url_for('static', filename='images/github_logo.png') }}" /></a></div>
+						<div><a href="https://github.com/cjhickens" target="_blank"><img style="display: none" class="github-logo" src="{{ url_for('static', filename='images/github_logo_hover.jpeg') }}" /></a></div>
+					</button>
+
+				</div>
+			</footer>
+		</main>		
+	</div>	
+{% endblock %}
+
+{% block scripts %}
+<!-- Snackbar Script- copied off MDL website -->
+<script src="{{ url_for('static', filename='js/base-md.js') }}"></script>
+<!-- JS File for Page written myself -->
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

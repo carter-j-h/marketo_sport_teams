@@ -1,0 +1,36 @@
+
+h1, h3 ,p {
+	text-align: center;
+}
+
+p {
+	font-size: 2em;
+}
+
+form { 
+	padding: 20px;
+	width: 300px;
+	display: block; 
+	background: #cce5ff; 
+	margin: 0 auto;
+}
+
+button {
+	text-align: center;
+	display: block;
+}
+
+.form-container {
+	text-align: center;
+	margin: 0 auto;
+}
+
+/*Pseudo classes*/
+input:focus {
+    outline:none;
+}
+
+.error-msg {
+	color: blue-grey;
+	font-size: 1em;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Material Design CDN with Primary and Secondary Colors defined-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-indigo.min.css"/>    
+	<!-- Google Font -->
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+	<!-- Base CSS -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+
+	{% if name %}
+	<title>{{ name }} - Sports Teams</title>
+	{% else %}
+	<title>Marketo Sports Fans</title>
+	{% endif %}
+	
+	{% block head %}
+
+	{% endblock %}
+</head>
+<body>    
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="mdl-list" id="flash-errors">
+        {% for message in messages %}
+            <li class="mdl-list__item">
+            	<span class="mdl-list__item-primary-content">{{ message }}</span>
+			</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+
+	{% block content %}
+	{% endblock %}
+</body>
+	
+	<!-- Jquery CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Material Design Script -->
+	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+	<!-- Base JS Scripts-->
+	<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+	
+	{% block scripts %}
+
+	{% endblock %}
+</html>

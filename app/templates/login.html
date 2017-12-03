@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/form.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="mdl-grid">
+	
+	<div class="form-container">
+		<h1>Existing User- Please Sign In!</h1>
+
+		<form action="#" method="post" name="login">
+
+			{{ form.hidden_tag() }}
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">		
+			{{ form.username.label(class="mdl-textfield__label") }} {{ form.username(class="mdl-textfield__input") }}
+			</div>
+
+
+			{% for error in form.username.errors %}
+			<p class="error-msg">{{ error }}</p>
+			{% endfor %}
+
+
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">		
+			{{ form.email.label(class="mdl-textfield__label") }} {{ form.email(class="mdl-textfield__input") }}
+			</div>
+
+			{% for error in form.email.errors %}
+			<p class="error-msg">{{ error }}</p>
+			{% endfor %}
+
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			{{ form.password.label(class="mdl-textfield__label") }} {{ form.password(class="mdl-textfield__input") }}
+			</div>
+
+			{% for error in form.password.errors %}
+			<p class="error-msg">{{ error }}</p>
+			{% endfor %}
+
+
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+			Sign In
+			</button>
+		</form>
+		<h1>New User? Please Sign Up <a href="/register">Here!</a></h1>
+	</div>
+	
+</div>
+
+{% endblock %}
+
